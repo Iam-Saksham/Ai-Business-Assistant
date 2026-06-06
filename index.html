@@ -2,19 +2,31 @@
 <html>
 <head>
     <title>AI Business Assistant</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="container">
     <h1>AI Business Assistant</h1>
 
-    <input type="text" placeholder="Business Type">
-    <br><br>
+    <label>Business Type</label>
+    <input type="text" id="business" placeholder="Example: Gym">
 
-    <textarea placeholder="Customer Question"></textarea>
-    <br><br>
+    <label>Customer Question</label>
+    <textarea id="question" placeholder="Ask your question here"></textarea>
 
-    <button onclick="generateReply()">Generate Reply</button>
+    <button onclick="generateReply()">
+        Generate Reply
+    </button>
 
-<h3>Response</h3>
-<p id="output"></p>
+    <h3>Generated Response</h3>
+
+    <div id="output">
+        Your response will appear here...
+    </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
