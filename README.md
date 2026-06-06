@@ -36,3 +36,10 @@ Saksham Kumar Behera
 * Added dynamic customer reply generation
 * Improved user interaction and usability
 * Updated project documentation
+
+### Day 3
+* Added response generation functionality
+* Connected button with JavaScript
+* Improved styling and layout
+* Enhanced user experience
+* Updated documentation
