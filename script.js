@@ -1,14 +1,24 @@
-function generateReply() {
+function generateReply(){
 
-    let business = document.querySelector("input").value;
-    let question = document.querySelector("textarea").value;
+    let business =
+        document.getElementById("business").value;
 
-    let reply =
+    let question =
+        document.getElementById("question").value;
+
+    if(business === "" || question === ""){
+        document.getElementById("output").innerHTML =
+            "Please fill in all fields.";
+        return;
+    }
+
+    let response =
         "Thank you for contacting our " +
         business +
-        ". We appreciate your question: '" +
+        ". We appreciate your question regarding '" +
         question +
-        "'. Our team will respond shortly.";
+        "'. Our team will get back to you shortly with complete details.";
 
-    document.getElementById("output").innerText = reply;
+    document.getElementById("output").innerHTML =
+        response;
 }
