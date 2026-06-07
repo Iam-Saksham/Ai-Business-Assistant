@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>AI Business Assistant</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h1>AI Business Assistant</h1>
+    <div class="container">
 
-    <label>Business Type</label>
-    <input type="text" id="business" placeholder="Example: Gym">
+        <h1>AI Business Assistant</h1>
 
-    <label>Customer Question</label>
-    <textarea id="question" placeholder="Ask your question here"></textarea>
+        <label>Business Type</label>
 
-    <button onclick="generateReply()">
-        Generate Reply
-    </button>
+        <select id="business">
 
-    <h3>Generated Response</h3>
+            <option value="">Select Business</option>
 
-    <div id="output">
-        Your response will appear here...
+            <option value="gym">Gym</option>
+
+            <option value="restaurant">Restaurant</option>
+
+            <option value="salon">Salon</option>
+
+            <option value="clinic">Clinic</option>
+
+            <option value="coaching">Coaching Center</option>
+
+        </select>
+
+        <label>Customer Question</label>
+
+        <textarea id="question"
+            placeholder="Ask your question here"></textarea>
+
+        <button onclick="generateReply()">
+            Generate Reply
+        </button>
+
+        <h3>Generated Response</h3>
+
+        <div id="output">
+            Your response will appear here...
+        </div>
+
     </div>
-</div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
