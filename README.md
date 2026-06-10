@@ -46,8 +46,18 @@ Saksham Kumar Behera
 
 ### Day 4
 
-* Added business-specific response templates
-* Improved input validation
-* Enhanced response generation logic
-* Refined project structure and code readability
-* Updated project roadmap and documentation
+- Added support for multiple business categories
+- Replaced text input with dropdown selection
+- Implemented business-specific response templates
+- Improved input validation
+- Enhanced user interface and styling
+- Refactored response generation logic
+
+### Day 5
+
+* Added customer personalization
+* Implemented keyword-based response generation
+* Added query analytics counter
+* Displayed response timestamps
+* Added response status tracking
+* Improved user experience and application functionality
