@@ -12,22 +12,18 @@
 
         <h1>AI Business Assistant</h1>
 
+        <label>Customer Name</label>
+        <input type="text" id="customer" placeholder="Enter your name">
+
         <label>Business Type</label>
 
         <select id="business">
-
             <option value="">Select Business</option>
-
             <option value="gym">Gym</option>
-
             <option value="restaurant">Restaurant</option>
-
             <option value="salon">Salon</option>
-
             <option value="clinic">Clinic</option>
-
             <option value="coaching">Coaching Center</option>
-
         </select>
 
         <label>Customer Question</label>
@@ -45,7 +41,29 @@
             Your response will appear here...
         </div>
 
+        <h3>Total Queries Processed</h3>
+
+        <div id="counter">
+            0
+        </div>
+
+        <h3>Generated On</h3>
+
+        <div id="timestamp">
+            No response generated yet.
+        </div>
+
+        <h3>Status</h3>
+
+        <div id="status">
+            Waiting for input...
+        </div>
+
     </div>
+
+    <footer>
+        AI Business Assistant v1.0
+    </footer>
 
     <script src="script.js"></script>
 
