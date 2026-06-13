@@ -1,4 +1,13 @@
-let queryCount = 0;
+let queryCount =
+    Number(localStorage.getItem("queryCount")) || 0;
+
+let history =
+    JSON.parse(localStorage.getItem("history")) || [];
+
+document.getElementById("counter").innerHTML =
+    queryCount;
+
+displayHistory();
 
 function generateReply() {
 
@@ -9,34 +18,25 @@ function generateReply() {
         document.getElementById("business").value;
 
     let question =
-        document.getElementById("question").value
-            .toLowerCase()
+        document.getElementById("question")
+            .value.toLowerCase()
             .trim();
 
     let output =
         document.getElementById("output");
 
     if (customer === "") {
-
-        output.innerHTML =
-            "Please enter your name.";
-
+        output.innerHTML = "Please enter your name.";
         return;
     }
 
     if (business === "") {
-
-        output.innerHTML =
-            "Please select a business type.";
-
+        output.innerHTML = "Please select a business.";
         return;
     }
 
     if (question === "") {
-
-        output.innerHTML =
-            "Please enter your question.";
-
+        output.innerHTML = "Please enter your question.";
         return;
     }
 
@@ -45,39 +45,21 @@ function generateReply() {
     if (business === "gym") {
 
         if (question.includes("membership")) {
-
             response =
-                "Hello " + customer +
-                ", we offer monthly, quarterly and yearly membership plans.";
-
+                "Membership plans are available monthly, quarterly and yearly.";
         }
 
         else if (
-            question.includes("fees") ||
-            question.includes("price")
+            question.includes("price") ||
+            question.includes("fees")
         ) {
-
             response =
-                "Hello " + customer +
-                ", our membership fees start from ₹999 per month.";
-
-        }
-
-        else if (
-            question.includes("timing")
-        ) {
-
-            response =
-                "Hello " + customer +
-                ", our gym operates from 5 AM to 10 PM.";
-
+                "Membership starts from ₹999 per month.";
         }
 
         else {
-
             response =
-                "Hello " + customer +
-                ", thank you for contacting our Gym.";
+                "Thank you for contacting our Gym.";
         }
     }
 
@@ -86,78 +68,124 @@ function generateReply() {
         if (
             question.includes("reservation")
         ) {
-
             response =
-                "Hello " + customer +
-                ", yes, we accept table reservations.";
-
-        }
-
-        else if (
-            question.includes("menu")
-        ) {
-
-            response =
-                "Hello " + customer +
-                ", our menu includes Indian, Chinese and Continental dishes.";
-
-        }
-
-        else if (
-            question.includes("timing")
-        ) {
-
-            response =
-                "Hello " + customer +
-                ", we are open from 10 AM to 11 PM.";
-
+                "We accept reservations every day.";
         }
 
         else {
-
             response =
-                "Hello " + customer +
-                ", thank you for contacting our Restaurant.";
+                "Thank you for contacting our Restaurant.";
         }
     }
 
     else if (business === "salon") {
 
         response =
-            "Hello " + customer +
-            ", we provide hair styling, grooming and beauty services.";
-
+            "We offer grooming and beauty services.";
     }
 
     else if (business === "clinic") {
 
         response =
-            "Hello " + customer +
-            ", we assist with appointments and medical consultations.";
-
+            "Appointments are available throughout the week.";
     }
 
-    else if (business === "coaching") {
+    else {
 
         response =
-            "Hello " + customer +
-            ", we offer expert coaching and academic guidance.";
-
+            "Thank you for contacting us.";
     }
 
-    output.innerHTML = response;
+    let finalResponse =
+        "Hello " +
+        customer +
+        ", " +
+        response;
+
+    output.innerHTML =
+        finalResponse;
 
     queryCount++;
+
+    localStorage.setItem(
+        "queryCount",
+        queryCount
+    );
 
     document.getElementById("counter")
         .innerHTML = queryCount;
 
-    let now = new Date();
+    let now =
+        new Date().toLocaleString();
 
     document.getElementById("timestamp")
-        .innerHTML = now.toLocaleString();
+        .innerHTML = now;
 
     document.getElementById("status")
         .innerHTML =
         "✓ Response Generated Successfully";
+
+    document.getElementById("lastQuery")
+        .innerHTML =
+        question;
+
+    history.push({
+        customer,
+        business,
+        question
+    });
+
+    localStorage.setItem(
+        "history",
+        JSON.stringify(history)
+    );
+
+    displayHistory();
+}
+
+function displayHistory() {
+
+    let historyList =
+        document.getElementById("history");
+
+    historyList.innerHTML = "";
+
+    history.forEach(item => {
+
+        let li =
+            document.createElement("li");
+
+        li.innerHTML =
+            "<strong>" +
+            item.customer +
+            "</strong> | " +
+            item.business +
+            " | " +
+            item.question;
+
+        historyList.appendChild(li);
+    });
+}
+
+function clearHistory() {
+
+    history = [];
+
+    queryCount = 0;
+
+    localStorage.clear();
+
+    document.getElementById("counter")
+        .innerHTML = "0";
+
+    document.getElementById("history")
+        .innerHTML = "";
+
+    document.getElementById("lastQuery")
+        .innerHTML =
+        "No query yet.";
+
+    document.getElementById("status")
+        .innerHTML =
+        "History Cleared";
 }
