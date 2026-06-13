@@ -35,6 +35,10 @@
             Generate Reply
         </button>
 
+        <button onclick="clearHistory()">
+            Clear History
+        </button>
+
         <h3>Generated Response</h3>
 
         <div id="output">
@@ -45,6 +49,12 @@
 
         <div id="counter">
             0
+        </div>
+
+        <h3>Last Query</h3>
+
+        <div id="lastQuery">
+            No query yet.
         </div>
 
         <h3>Generated On</h3>
@@ -59,10 +69,15 @@
             Waiting for input...
         </div>
 
+        <h3>Query History</h3>
+
+        <ul id="history">
+        </ul>
+
     </div>
 
     <footer>
-        AI Business Assistant v1.0
+        AI Business Assistant v2.0
     </footer>
 
     <script src="script.js"></script>
