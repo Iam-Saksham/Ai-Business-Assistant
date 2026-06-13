@@ -61,3 +61,13 @@ Saksham Kumar Behera
 * Displayed response timestamps
 * Added response status tracking
 * Improved user experience and application functionality
+
+### Day 6
+
+* Added local storage support
+* Added persistent query history
+* Added last query tracking
+* Added history management
+* Added clear history functionality
+* Improved analytics and data persistence
+
