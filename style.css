@@ -6,13 +6,13 @@ body {
 }
 
 .container {
-    width: 80%;
-    max-width: 750px;
+    width: 85%;
+    max-width: 800px;
     margin: 40px auto;
     background: white;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.1);
 }
 
 h1 {
@@ -42,14 +42,13 @@ textarea {
 
 button {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 15px;
     background: #007bff;
     color: white;
     border: none;
     padding: 14px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
 }
 
 button:hover {
@@ -57,8 +56,10 @@ button:hover {
 }
 
 #output,
+#counter,
 #timestamp,
-#status {
+#status,
+#lastQuery {
     margin-top: 10px;
     background: #f8f8f8;
     padding: 15px;
@@ -66,12 +67,20 @@ button:hover {
 }
 
 #counter {
+    font-size: 24px;
     text-align: center;
-    font-size: 28px;
     font-weight: bold;
+}
+
+#history {
+    margin-top: 15px;
+}
+
+#history li {
+    margin-bottom: 10px;
     background: #f8f8f8;
-    padding: 15px;
-    border-radius: 6px;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 footer {
