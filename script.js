@@ -4,9 +4,7 @@ let queryCount =
 let history =
     JSON.parse(localStorage.getItem("history")) || [];
 
-document.getElementById("counter").innerHTML =
-    queryCount;
-
+updateDashboard();
 displayHistory();
 
 function generateReply() {
@@ -18,137 +16,61 @@ function generateReply() {
         document.getElementById("business").value;
 
     let question =
-        document.getElementById("question")
-            .value.toLowerCase()
-            .trim();
+        document.getElementById("question").value.trim();
 
-    let output =
-        document.getElementById("output");
-
-    if (customer === "") {
-        output.innerHTML = "Please enter your name.";
+    if (!customer || !business || !question) {
+        alert("Please fill all fields.");
         return;
     }
 
-    if (business === "") {
-        output.innerHTML = "Please select a business.";
-        return;
-    }
+    let response =
+        `Hello ${customer},
+Thank you for contacting our ${business}. We have received your query regarding "${question}".`;
 
-    if (question === "") {
-        output.innerHTML = "Please enter your question.";
-        return;
-    }
-
-    let response = "";
-
-    if (business === "gym") {
-
-        if (question.includes("membership")) {
-            response =
-                "Membership plans are available monthly, quarterly and yearly.";
-        }
-
-        else if (
-            question.includes("price") ||
-            question.includes("fees")
-        ) {
-            response =
-                "Membership starts from ₹999 per month.";
-        }
-
-        else {
-            response =
-                "Thank you for contacting our Gym.";
-        }
-    }
-
-    else if (business === "restaurant") {
-
-        if (
-            question.includes("reservation")
-        ) {
-            response =
-                "We accept reservations every day.";
-        }
-
-        else {
-            response =
-                "Thank you for contacting our Restaurant.";
-        }
-    }
-
-    else if (business === "salon") {
-
-        response =
-            "We offer grooming and beauty services.";
-    }
-
-    else if (business === "clinic") {
-
-        response =
-            "Appointments are available throughout the week.";
-    }
-
-    else {
-
-        response =
-            "Thank you for contacting us.";
-    }
-
-    let finalResponse =
-        "Hello " +
-        customer +
-        ", " +
+    document.getElementById("output").innerHTML =
         response;
 
-    output.innerHTML =
-        finalResponse;
-
     queryCount++;
+
+    history.push({
+        customer,
+        business,
+        question,
+        date: new Date().toLocaleString()
+    });
 
     localStorage.setItem(
         "queryCount",
         queryCount
     );
 
-    document.getElementById("counter")
-        .innerHTML = queryCount;
-
-    let now =
-        new Date().toLocaleString();
-
-    document.getElementById("timestamp")
-        .innerHTML = now;
-
-    document.getElementById("status")
-        .innerHTML =
-        "✓ Response Generated Successfully";
-
-    document.getElementById("lastQuery")
-        .innerHTML =
-        question;
-
-    history.push({
-        customer,
-        business,
-        question
-    });
-
     localStorage.setItem(
         "history",
         JSON.stringify(history)
     );
 
+    document.getElementById("timestamp")
+        .innerHTML =
+        new Date().toLocaleString();
+
+    document.getElementById("lastQuery")
+        .innerHTML =
+        question;
+
+    document.getElementById("status")
+        .innerHTML =
+        "✓ Success";
+
+    updateDashboard();
     displayHistory();
 }
 
 function displayHistory() {
 
-    let historyList =
+    let list =
         document.getElementById("history");
 
-    historyList.innerHTML = "";
+    list.innerHTML = "";
 
     history.forEach(item => {
 
@@ -156,36 +78,90 @@ function displayHistory() {
             document.createElement("li");
 
         li.innerHTML =
-            "<strong>" +
-            item.customer +
-            "</strong> | " +
-            item.business +
-            " | " +
-            item.question;
+            `${item.customer} | ${item.business} | ${item.question}`;
 
-        historyList.appendChild(li);
+        list.appendChild(li);
     });
+}
+
+function updateDashboard() {
+
+    document.getElementById("counter")
+        .innerHTML =
+        queryCount;
+
+    let counts = {};
+
+    history.forEach(item => {
+
+        counts[item.business] =
+            (counts[item.business] || 0) + 1;
+    });
+
+    let maxBusiness =
+        "No Data";
+
+    let maxCount = 0;
+
+    for (let business in counts) {
+
+        if (counts[business] > maxCount) {
+
+            maxCount =
+                counts[business];
+
+            maxBusiness =
+                business;
+        }
+    }
+
+    document.getElementById("mostUsed")
+        .innerHTML =
+        maxBusiness;
+
+    document.getElementById("businessCount")
+        .innerHTML =
+        Object.keys(counts).length;
 }
 
 function clearHistory() {
 
     history = [];
-
     queryCount = 0;
 
     localStorage.clear();
 
-    document.getElementById("counter")
-        .innerHTML = "0";
+    updateDashboard();
 
     document.getElementById("history")
         .innerHTML = "";
+}
 
-    document.getElementById("lastQuery")
-        .innerHTML =
-        "No query yet.";
+function downloadHistory() {
 
-    document.getElementById("status")
-        .innerHTML =
-        "History Cleared";
+    let content =
+        JSON.stringify(history, null, 2);
+
+    let blob =
+        new Blob(
+            [content],
+            { type: "text/plain" }
+        );
+
+    let a =
+        document.createElement("a");
+
+    a.href =
+        URL.createObjectURL(blob);
+
+    a.download =
+        "history.txt";
+
+    a.click();
+}
+
+function toggleDarkMode() {
+
+    document.body.classList
+        .toggle("dark-mode");
 }
