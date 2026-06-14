@@ -8,12 +8,16 @@
 
 <body>
 
+    <button id="darkModeBtn" onclick="toggleDarkMode()">
+        🌙 Toggle Dark Mode
+    </button>
+
     <div class="container">
 
         <h1>AI Business Assistant</h1>
 
         <label>Customer Name</label>
-        <input type="text" id="customer" placeholder="Enter your name">
+        <input type="text" id="customer">
 
         <label>Business Type</label>
 
@@ -28,11 +32,14 @@
 
         <label>Customer Question</label>
 
-        <textarea id="question"
-            placeholder="Ask your question here"></textarea>
+        <textarea id="question"></textarea>
 
         <button onclick="generateReply()">
             Generate Reply
+        </button>
+
+        <button onclick="downloadHistory()">
+            Download History
         </button>
 
         <button onclick="clearHistory()">
@@ -40,44 +47,33 @@
         </button>
 
         <h3>Generated Response</h3>
+        <div id="output"></div>
 
-        <div id="output">
-            Your response will appear here...
-        </div>
+        <h3>Total Queries</h3>
+        <div id="counter">0</div>
 
-        <h3>Total Queries Processed</h3>
+        <h3>Most Used Business</h3>
+        <div id="mostUsed">No Data</div>
 
-        <div id="counter">
-            0
-        </div>
+        <h3>Businesses Used</h3>
+        <div id="businessCount">0</div>
 
         <h3>Last Query</h3>
-
-        <div id="lastQuery">
-            No query yet.
-        </div>
+        <div id="lastQuery">No query yet</div>
 
         <h3>Generated On</h3>
-
-        <div id="timestamp">
-            No response generated yet.
-        </div>
+        <div id="timestamp"></div>
 
         <h3>Status</h3>
-
-        <div id="status">
-            Waiting for input...
-        </div>
+        <div id="status"></div>
 
         <h3>Query History</h3>
-
-        <ul id="history">
-        </ul>
+        <ul id="history"></ul>
 
     </div>
 
     <footer>
-        AI Business Assistant v2.0
+        AI Business Assistant v1.0
     </footer>
 
     <script src="script.js"></script>
