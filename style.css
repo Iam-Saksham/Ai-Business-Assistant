@@ -6,12 +6,12 @@ body {
 }
 
 .dark-mode {
-    background: #1e1e1e;
+    background: #121212;
     color: white;
 }
 
 .container {
-    max-width: 850px;
+    max-width: 1000px;
     margin: auto;
     background: white;
     padding: 25px;
@@ -19,7 +19,29 @@ body {
 }
 
 .dark-mode .container {
-    background: #2b2b2b;
+    background: #222;
+}
+
+h1 {
+    text-align: center;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: #e8e8e8;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dark-mode .card {
+    background: #333;
 }
 
 input,
@@ -33,37 +55,45 @@ button {
     box-sizing: border-box;
 }
 
+textarea {
+    height: 120px;
+}
+
 button {
     cursor: pointer;
 }
 
 #output,
-#counter,
-#mostUsed,
-#businessCount,
-#lastQuery,
 #timestamp,
 #status {
     background: #f0f0f0;
     padding: 12px;
-    border-radius: 6px;
+    border-radius: 8px;
+    margin-top: 10px;
 }
 
 .dark-mode #output,
-.dark-mode #counter,
-.dark-mode #mostUsed,
-.dark-mode #businessCount,
-.dark-mode #lastQuery,
 .dark-mode #timestamp,
 .dark-mode #status {
-    background: #3a3a3a;
+    background: #333;
 }
 
 #history li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dark-mode #history li {
+    background: #333;
 }
 
 footer {
     text-align: center;
     margin-top: 20px;
+}
+
+.dark-btn {
+    max-width: 250px;
 }
