@@ -1,20 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>AI Business Assistant</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Business Assistant v2.0</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <button id="darkModeBtn" onclick="toggleDarkMode()">
+    <button class="dark-btn" onclick="toggleDarkMode()">
         🌙 Toggle Dark Mode
     </button>
 
     <div class="container">
 
-        <h1>AI Business Assistant</h1>
+        <h1>AI Business Assistant v2.0</h1>
+
+        <div class="dashboard">
+
+            <div class="card">
+                <h3>Total Queries</h3>
+                <p id="counter">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Most Used Business</h3>
+                <p id="mostUsed">None</p>
+            </div>
+
+            <div class="card">
+                <h3>Businesses Used</h3>
+                <p id="businessCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Average Rating</h3>
+                <p id="averageRating">0</p>
+            </div>
+
+        </div>
 
         <label>Customer Name</label>
         <input type="text" id="customer">
@@ -23,15 +49,14 @@
 
         <select id="business">
             <option value="">Select Business</option>
-            <option value="gym">Gym</option>
-            <option value="restaurant">Restaurant</option>
-            <option value="salon">Salon</option>
-            <option value="clinic">Clinic</option>
-            <option value="coaching">Coaching Center</option>
+            <option value="Gym">Gym</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Salon">Salon</option>
+            <option value="Clinic">Clinic</option>
+            <option value="Coaching Center">Coaching Center</option>
         </select>
 
-        <label>Customer Question</label>
-
+        <label>Question</label>
         <textarea id="question"></textarea>
 
         <button onclick="generateReply()">
@@ -39,41 +64,54 @@
         </button>
 
         <button onclick="downloadHistory()">
-            Download History
+            Export History
         </button>
 
         <button onclick="clearHistory()">
             Clear History
         </button>
 
-        <h3>Generated Response</h3>
-        <div id="output"></div>
+        <h2>Response</h2>
 
-        <h3>Total Queries</h3>
-        <div id="counter">0</div>
+        <div id="output">
+            Waiting for input...
+        </div>
 
-        <h3>Most Used Business</h3>
-        <div id="mostUsed">No Data</div>
+        <div id="timestamp">
+            No timestamp available
+        </div>
 
-        <h3>Businesses Used</h3>
-        <div id="businessCount">0</div>
+        <div id="status">
+            Ready
+        </div>
 
-        <h3>Last Query</h3>
-        <div id="lastQuery">No query yet</div>
+        <h2>Rate Response</h2>
 
-        <h3>Generated On</h3>
-        <div id="timestamp"></div>
+        <button onclick="rateResponse(1)">
+            👍 Helpful
+        </button>
 
-        <h3>Status</h3>
-        <div id="status"></div>
+        <button onclick="rateResponse(0)">
+            👎 Not Helpful
+        </button>
 
-        <h3>Query History</h3>
-        <ul id="history"></ul>
+        <h2>Search History</h2>
+
+        <input
+            type="text"
+            id="searchBox"
+            placeholder="Search history..."
+            onkeyup="searchHistory()">
+
+        <h2>History</h2>
+
+        <ul id="history">
+        </ul>
 
     </div>
 
     <footer>
-        AI Business Assistant v1.0
+        AI Business Assistant v2.0 | Final Release
     </footer>
 
     <script src="script.js"></script>
